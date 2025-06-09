@@ -28,13 +28,6 @@ function ProductList({ productos }) {
                                     <Card.Subtitle className="mb-2 text-muted text-center">
                                         ${producto.precio}
                                     </Card.Subtitle>
-                                    <Card.Text className="text-center text-muted">
-                                        {producto.descripcion}
-                                    </Card.Text>
-                                    <Card.Text className="text-center">
-                                        <strong>Categoría:</strong> {producto.categoria}
-                                    </Card.Text>
-
                                     <div className="d-flex flex-wrap gap-2 justify-content-center mt-3">
                                         <Button
                                             variant="outline-danger"
