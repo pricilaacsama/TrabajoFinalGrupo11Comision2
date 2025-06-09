@@ -6,7 +6,8 @@
     "precio": 19999.99,
     "descripcion": "Zapatillas cómodas y livianas para uso diario.",
     "categoria": "Calzado",
-    "estado": true
+    "estado": true,
+    "favorito": false
   },
   {
     "id": 2,
@@ -15,7 +16,8 @@
     "precio": 7999.99,
     "descripcion": "Remera deportiva de secado rápido.",
     "categoria": "Indumentaria",
-    "estado": true
+    "estado": true,
+    "favorito": false
   },
   {
     "id": 3,
@@ -24,6 +26,7 @@
     "precio": 15999.00,
     "descripcion": "Mochila resistente con múltiples compartimientos.",
     "categoria": "Accesorios",
-    "estado": true
+    "estado": true,
+    "favorito": false
   }
 ]
