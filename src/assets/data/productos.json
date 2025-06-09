@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "imagen": "https://via.placeholder.com/200",
+    "nombre": "Zapatillas Urbanas",
+    "precio": 19999.99,
+    "descripcion": "Zapatillas cómodas y livianas para uso diario.",
+    "categoria": "Calzado",
+    "estado": true
+  },
+  {
+    "id": 2,
+    "imagen": "https://via.placeholder.com/200",
+    "nombre": "Remera Dry Fit",
+    "precio": 7999.99,
+    "descripcion": "Remera deportiva de secado rápido.",
+    "categoria": "Indumentaria",
+    "estado": true
+  },
+  {
+    "id": 3,
+    "imagen": "https://via.placeholder.com/200",
+    "nombre": "Mochila Escolar",
+    "precio": 15999.00,
+    "descripcion": "Mochila resistente con múltiples compartimientos.",
+    "categoria": "Accesorios",
+    "estado": true
+  }
+]
