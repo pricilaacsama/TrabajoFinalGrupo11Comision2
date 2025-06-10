@@ -6,6 +6,7 @@ import productosData from './assets/data/productos.json';
 import Error from './assets/pages/Error';
 import Acerca from './assets/pages/Acerca';
 import Detalle from './assets/pages/Detalle'; // ✅ AÑADIR
+import Formulario from './assets/components/Formulario'
 import './App.css';
 import { useState } from 'react';
 
@@ -18,6 +19,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home productos={productos} />} />
         <Route path="/favoritos" element={<Favoritos />} />
+        <Route path="/crear" element={<Formulario productos={productos}/>} />
+        <Route path="/editar/:id" element={<Formulario />} />
         <Route path="/acerca" element={<Acerca />} />
         <Route path="/detalle/:id" element={<Detalle />} /> {/* ✅ NUEVA RUTA */}
         <Route path="*" element={<Error />} />
