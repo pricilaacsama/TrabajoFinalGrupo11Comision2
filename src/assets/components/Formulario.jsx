@@ -10,7 +10,7 @@ function Formulario() {
     const navigate = useNavigate();
 
     //busca si existe el producto para editar;
-    const productoExistente = productos.find((p) => p.id === Number(id));
+  const productoExistente = productos?.find((p) => p.id === Number(id));
 
 
     const [formulario, setFormulario] = useState({
@@ -26,7 +26,7 @@ function Formulario() {
     });
 
     //si es que existe precarga los datos del producto;
-    useEffect(() => {
+ useEffect(() => {
         if (productoExistente) {
             setFormulario(productoExistente);
         }

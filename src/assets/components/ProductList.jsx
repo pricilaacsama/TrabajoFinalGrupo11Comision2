@@ -4,7 +4,7 @@ import { useProductos } from "../hooks/useProductos"
 
 function ProductList() {
 
-  const {productos,borrarProducto,agregarProductos,modificarProductos,marcarFavorito} = useProductos();
+  const { productos, borrarProducto, agregarProductos, modificarProductos, marcarFavorito } = useProductos();
   const productosActivos = productos.filter((p) => p.estado);
 
   return (
@@ -33,10 +33,15 @@ function ProductList() {
                     ${producto.precio}
                   </Card.Subtitle>
                   <div className="d-flex flex-wrap gap-2 justify-content-center mt-3">
-                    <Button variant="outline-danger" size="sm" onClick={()=>borrarProducto(producto.id)}>
+                    <Button variant="outline-danger" size="sm" onClick={() => borrarProducto(producto.id)}>
                       Eliminar
                     </Button>
-                    <Button variant="outline-success" size="sm">
+                    <Button
+                      as={Link}
+                      to={`/editar/${producto.id}`}
+                      variant="outline-success"
+                      size="sm"
+                    >
                       Modificar
                     </Button>
                     {/* ✅ Botón Detalles con Link */}
@@ -48,7 +53,7 @@ function ProductList() {
                     >
                       Detalles
                     </Button>
-                    <Button variant="outline-warning" size="sm" onClick={()=>marcarFavorito(producto.id)}>
+                    <Button variant="outline-warning" size="sm" onClick={() => marcarFavorito(producto.id)}>
                       Favorito
                     </Button>
                   </div>
