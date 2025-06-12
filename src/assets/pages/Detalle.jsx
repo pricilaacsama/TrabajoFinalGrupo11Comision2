@@ -1,12 +1,14 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { Container, Button, Card } from "react-bootstrap";
-import productosData from "../data/productos.json";
+import { useProductos} from "../hooks/useProductos";
 
 function Detalle() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { productos } = useProductos();
+  //const producto = productos.find((p) => p.id === id);
+const producto = productos.find((p) => String(p.id) === id);
 
-  const producto = productosData.find((p) => p.id === parseInt(id));
 
   if (!producto) {
     return (
