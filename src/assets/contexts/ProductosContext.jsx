@@ -17,7 +17,7 @@ export function ProductosProvider({ children }) {
     },[]);
 
     const borrarProducto = useCallback((id) => {
-        if (window.confirm('¿Seguro que querés eliminar al alumno?')) {
+        if (window.confirm('¿Seguro que querés eliminar al producto?')) {
         setProductos((prevProductos) => {
             return prevProductos.map(p => p.id === id ? { ...p,estado:false} : p)
         })

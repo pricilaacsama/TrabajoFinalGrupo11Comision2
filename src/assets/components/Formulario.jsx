@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { Container, Form, Button, Card } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
+import { useProductos } from "../hooks/useProductos";
 
-function Formulario({productos}) {
+function Formulario() {
 
+    const {productos, agregarProducto,modificarProducto} = useProductos();
     const { id } = useParams();
     const navigate = useNavigate();
 
@@ -42,7 +44,7 @@ function Formulario({productos}) {
 
         if (productoExistente) {
             // si existe el producto, lo editamos
-            editarProducto(formulario);
+            modificarProducto(formulario);
         } else {
             // si no existe, lo creamos (asignamos un nuevo id)
             const nuevoProducto = {
