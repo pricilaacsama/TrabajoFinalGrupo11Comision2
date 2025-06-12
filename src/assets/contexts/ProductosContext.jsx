@@ -10,7 +10,7 @@ export function ProductosProvider({ children }) {
 
     const agregarProducto = useCallback((nuevoProducto) => {
         setProductos((prevProductos) => {
-            const nuevoId = String (prevProductos.length>0 ? Math.max(...prevProductos.map(p=>Number(p.id)))+1:1);
+            const nuevoId = prevProductos.length>0 ? Math.max(...prevProductos.map(p=>Number(p.id)))+1:1;
             return [...prevProductos,{...nuevoProducto,id:nuevoId}];
         
     });
