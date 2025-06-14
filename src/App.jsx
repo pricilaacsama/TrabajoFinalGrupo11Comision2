@@ -27,7 +27,8 @@ function App() {
         <Route path="/login" element={<Login />} />
 
         {/* Rutas protegidas u otras páginas */}
-        <Route path="/home" element={<Home productos={productos} />} />
+    
+        <Route path="/home" element={<Home />} />
         <Route path="/favoritos" element={<Favoritos />} />
         <Route path="/crear" element={<Formulario productos={productos} />} />
         <Route path="/editar/:id" element={<Formulario />} />
@@ -46,10 +47,10 @@ export default App;
 
 
 
+/*
+<Route path="/home" element={<Home productos={productos} />} />
 
-
-
-/*import { Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import NavBar from './assets/components/NavBar';
 import Home from './assets/pages/Home';
 import Favoritos from './assets/pages/Favoritos';
