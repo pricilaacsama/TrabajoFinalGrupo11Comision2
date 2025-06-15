@@ -53,9 +53,13 @@ function ProductList() {
                     >
                       Detalles
                     </Button>
-                    <Button variant="outline-warning" size="sm" onClick={() => marcarFavorito(producto.id)}>
-                      Favorito
-                    </Button>
+                    <span
+                      onClick={() => marcarFavorito(producto.id)}
+                      style={{ cursor: "pointer", fontSize: "1.5rem" }}
+                      title="Marcar como favorito"
+                    >
+                      {producto.favorito ? "❤️" : "🤍"}
+                    </span>
                   </div>
                 </Card.Body>
               </Card>

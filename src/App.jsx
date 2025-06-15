@@ -2,21 +2,19 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import NavBar from './assets/components/NavBar';
 import Home from './assets/pages/Home';
 import Favoritos from './assets/pages/Favoritos';
-import productosData from './assets/data/productos.json';
 import Error from './assets/pages/Error';
 import Acerca from './assets/pages/Acerca';
 import Detalle from './assets/pages/Detalle';
 import Formulario from './assets/components/Formulario';
 import Login from './assets/pages/login'; // Asegúrate que el archivo se llame igual (Login.js o login.js)
 import './App.css';
-import { useState } from 'react';
+import ProtectedRoute from './assets/components/ProtectedRoute';
+
 
 function App() {
-  const [productos, setProductos] = useState(productosData);
 
   return (
     <>
-      {/* Podés ocultar NavBar cuando estás en Login si querés */}
       <NavBar />
 
       <Routes>
@@ -25,15 +23,56 @@ function App() {
 
         {/* Página de login */}
         <Route path="/login" element={<Login />} />
-
-        {/* Rutas protegidas u otras páginas */}
-    
-        <Route path="/home" element={<Home />} />
-        <Route path="/favoritos" element={<Favoritos />} />
-        <Route path="/crear" element={<Formulario productos={productos} />} />
-        <Route path="/editar/:id" element={<Formulario />} />
-        <Route path="/acerca" element={<Acerca />} />
-        <Route path="/detalle/:id" element={<Detalle />} />
+        {/*acceso para ambos roles */}
+        <Route
+          path="/home"
+          element={
+            <ProtectedRoute allowedRoles={["CLIENTE", "ADMINISTRATIVO"]}>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/favoritos"
+          element={
+            <ProtectedRoute allowedRoles={["CLIENTE", "ADMINISTRATIVO"]}>
+              <Favoritos />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/acerca"
+          element={
+            <ProtectedRoute allowedRoles={["CLIENTE", "ADMINISTRATIVO"]}>
+              <Acerca />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/detalle/:id"
+          element={
+            <ProtectedRoute allowedRoles={["CLIENTE", "ADMINISTRATIVO"]}>
+              <Detalle />
+            </ProtectedRoute>
+          }
+        />
+        {/* Solo ADMINISTRATIVO */}
+        <Route
+          path="/crear"
+          element={
+            <ProtectedRoute allowedRoles={["ADMINISTRATIVO"]}>
+              <Formulario />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/editar/:id"
+          element={
+            <ProtectedRoute allowedRoles={["ADMINISTRATIVO"]}>
+              <Formulario />
+            </ProtectedRoute>
+          }
+        />
 
         {/* Ruta por defecto para errores */}
         <Route path="*" element={<Error />} />

@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Form, Button, Card } from "react-bootstrap";
-import useAuth from "../hooks/useAuth";
+import {useAuth} from "../hooks/useAuth";
 
 function Login() {
-  const { login, isLoading } = useAuth();
+  const { login, isLoading, user, isAuthenticated} = useAuth();
   const navigate = useNavigate();
   const [credentials, setCredentials] = useState({ username: "", password: "" });
   const [error, setError] = useState("");

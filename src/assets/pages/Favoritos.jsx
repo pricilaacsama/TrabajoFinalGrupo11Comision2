@@ -5,7 +5,8 @@ import { useProductos } from "../hooks/useProductos"
 
 function Favoritos(){
 const {productos,borrarProducto,agregarProductos,modificarProductos,marcarFavorito} = useProductos();
-  const productosActivos = productos.filter((p) => p.favorito);
+  const productosList = productos.filter((producto) => producto.estado);
+  const productosActivos = productosList.filter((p) => p.favorito);
 
   return (
     <Container>
@@ -36,7 +37,12 @@ const {productos,borrarProducto,agregarProductos,modificarProductos,marcarFavori
                     <Button variant="outline-danger" size="sm" onClick={()=>borrarProducto(producto.id)}>
                       Eliminar
                     </Button>
-                    <Button variant="outline-success" size="sm">
+                    <Button
+                      as={Link}
+                      to={`/editar/${producto.id}`}
+                      variant="outline-success"
+                      size="sm"
+                    >
                       Modificar
                     </Button>
                     {/* ✅ Botón Detalles con Link */}
@@ -48,9 +54,14 @@ const {productos,borrarProducto,agregarProductos,modificarProductos,marcarFavori
                     >
                       Detalles
                     </Button>
-                    <Button variant="outline-warning" size="sm" onClick={()=>marcarFavorito(producto.id)}>
-                      Favorito
-                    </Button>
+                    <span
+                      onClick={() => marcarFavorito(producto.id)}
+                      style={{ cursor: "pointer", fontSize: "1.5rem" }}
+                      title="Marcar como favorito"
+                    >
+                      {producto.favorito ? "❤️" : "🤍"}
+                    </span>
+
                   </div>
                 </Card.Body>
               </Card>

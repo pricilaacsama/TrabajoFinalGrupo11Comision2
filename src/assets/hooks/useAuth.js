@@ -3,7 +3,7 @@ import { AuthContext } from "../contexts/AutorizacionesContext"; // asegúrate q
 
 
 
-function useAuth() {
+export function useAuth() {
   const context = useContext(AuthContext);
   if (context === null) {
     throw new Error("useAuth debe ser usado dentro de un AuthProvider");
@@ -11,4 +11,3 @@ function useAuth() {
   return context;
 }
 
-export default useAuth;
