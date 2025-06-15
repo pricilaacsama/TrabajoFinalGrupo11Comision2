@@ -1,20 +1,20 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { Container, Button, Card } from "react-bootstrap";
-import { useProductos} from "../hooks/useProductos";
+import { useProductos } from "../hooks/useProductos";
 
 function Detalle() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const { productos } = useProductos();
+  const { productos, marcarFavorito } = useProductos();
   //const producto = productos.find((p) => p.id === id);
-const producto = productos.find((p) => String(p.id) === id);
+  const producto = productos.find((p) => String(p.id) === id);
 
 
   if (!producto) {
     return (
       <Container className="py-5 text-center">
         <h2>Producto no encontrado</h2>
-        <Button onClick={() => navigate("/")} className="mt-3">
+        <Button onClick={() => navigate("/home")} className="mt-3">
           Volver al inicio
         </Button>
       </Container>
@@ -39,15 +39,20 @@ const producto = productos.find((p) => String(p.id) === id);
           <p className="text-muted">Categoría: {producto.categoria}</p>
 
           <div className="d-flex flex-wrap gap-2 justify-content-center mt-4">
-            <Button variant="primary" onClick={() => navigate("/")}>
+            <Button variant="primary" onClick={() => navigate("/home")}>
               ← Volver al inicio
             </Button>
             <Button variant="outline-success">
               Editar
             </Button>
-            <Button variant="outline-warning">
-              Favorito
-            </Button>
+            <span
+              onClick={() => marcarFavorito(producto.id)}
+              style={{ cursor: "pointer", fontSize: "1.5rem" }}
+              title="Marcar como favorito"
+            >
+              {producto.favorito ? "❤️" : "🤍"}
+            </span>
+
           </div>
         </Card.Body>
       </Card>
