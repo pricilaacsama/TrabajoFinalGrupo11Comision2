@@ -10,6 +10,7 @@ import Login from './assets/pages/login'; // Asegúrate que el archivo se llame 
 import './App.css';
 import ProtectedRoute from './assets/components/ProtectedRoute';
 import Footer from './assets/components/Footer';
+import {ValidarToken} from './assets/components/Token'
 
 function App() {
 
@@ -23,6 +24,10 @@ function App() {
 
         {/* Página de login */}
         <Route path="/login" element={<Login />} />
+
+        {/* Pagina de token */}
+        <Route path="/token" element={<ValidarToken />} />
+
         {/*acceso para ambos roles */}
         <Route
           path="/home"

@@ -6,6 +6,7 @@ export const AuthContext = createContext(null);
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isAuthenticated,setIsAuthentificated] = useState (false);
 
   const login = useCallback((credentials) => {
     setIsLoading(true);
@@ -34,16 +35,22 @@ export function AuthProvider({ children }) {
   }, []);
 
   const logout = useCallback(() => {
+    setIsAuthentificated(false);
     setUser(null);
   }, []);
 
+  const autenticarToken = useCallback((correcto) => {
+    setIsAuthentificated(correcto);
+  })
+
   const AuthContextValue = useMemo(() => ({
     user,
-    isAuthenticated: !!user,
+    isAuthenticated,
     isLoading,
     login,
     logout,
-  }), [user, isLoading, logout]);
+    autenticarToken
+  }), [user, isLoading, logout,isAuthenticated]);
 
   return (
     <AuthContext.Provider value={AuthContextValue}>
