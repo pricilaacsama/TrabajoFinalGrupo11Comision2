@@ -4,7 +4,7 @@ import { Container, Form, Button, Card } from "react-bootstrap";
 import {useAuth} from "../hooks/useAuth";
 
 function Login() {
-  const { login, isLoading, user, isAuthenticated} = useAuth();
+  const { login, isLoading, user, isAuthenticated,logout} = useAuth();
   const navigate = useNavigate();
   const [credentials, setCredentials] = useState({ username: "", password: "" });
   const [error, setError] = useState("");
@@ -20,7 +20,7 @@ function Login() {
     e.preventDefault();
     const result = await login(credentials);
     if (result.success) {
-      navigate("/home");
+      navigate("/token");
     } else {
       setError(result.message || "Error de autenticación");
     }

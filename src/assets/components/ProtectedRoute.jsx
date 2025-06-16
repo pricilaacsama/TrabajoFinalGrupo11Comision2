@@ -5,10 +5,15 @@ function ProtectedRoute({ children, allowedRoles }) {
   const { user, isAuthenticated } = useAuth();
 
   if (!isAuthenticated) {
-    // No está logueado
+    // No verifico token
     return <Navigate to="/login" replace />;
   }
 
+  if (!(!!user)) {
+    // No se logueo
+    return <Navigate to="/login" replace />;
+  }
+  
   if (!allowedRoles.includes(user.rol)) {
     // No tiene el rol correcto para esta ruta
     return <Navigate to="/home" replace />;
