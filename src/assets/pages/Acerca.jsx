@@ -17,7 +17,7 @@ const integrantes = [
   },
   {
     nombre: 'Delia Maribel Cusipuma',
-    descripcion: 'Dar formato al Proyectso.',
+    descripcion: 'Control y Dar formato a Proyectos.',
     foto: img2,
   },
 ];
