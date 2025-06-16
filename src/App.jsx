@@ -9,7 +9,7 @@ import Formulario from './assets/components/Formulario';
 import Login from './assets/pages/login'; // Asegúrate que el archivo se llame igual (Login.js o login.js)
 import './App.css';
 import ProtectedRoute from './assets/components/ProtectedRoute';
-
+import Footer from './assets/components/Footer';
 
 function App() {
 
@@ -77,12 +77,12 @@ function App() {
         {/* Ruta por defecto para errores */}
         <Route path="*" element={<Error />} />
       </Routes>
+        <Footer />
     </>
   );
 }
 
 export default App;
-
 
 
 
