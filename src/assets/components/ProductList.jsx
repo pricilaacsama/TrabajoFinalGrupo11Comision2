@@ -1,11 +1,18 @@
 import { Row, Col, Card, Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { useProductos } from "../hooks/useProductos"
+import { useProductos } from "../hooks/useProductos";
 
 function ProductList() {
-
-  const { productos, borrarProducto, agregarProductos, modificarProductos, marcarFavorito } = useProductos();
+  const { productos, borrarProducto, modificarProducto, marcarFavorito, cargando } = useProductos();
   const productosActivos = productos.filter((p) => p.estado);
+
+  if (cargando) {
+    return (
+      <Container className="text-center mt-5">
+        <p className="fs-4 text-muted">Cargando productos...</p>
+      </Container>
+    );
+  }
 
   return (
     <Container>
@@ -44,7 +51,6 @@ function ProductList() {
                     >
                       Modificar
                     </Button>
-                    {/* ✅ Botón Detalles con Link */}
                     <Button
                       as={Link}
                       to={`/detalle/${producto.id}`}
