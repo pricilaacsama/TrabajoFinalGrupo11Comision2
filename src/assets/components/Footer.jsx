@@ -26,9 +26,9 @@ function Footer() {
           <Col md={4} className="mb-3 mb-md-0">
             <h6 className="text-uppercase fw-bold">Integrantes</h6>
             <ul className="list-unstyled">
-              <li>Juan Lamas</li>
+              <li>Juan Eduardo Lamas</li>
               <li>Delia Maribel Cusipuma</li>
-              <li>Prisila Acsama</li>
+              <li>Pricila Acsama</li>
             </ul>
             <small className="d-block fst-italic mt-2">  
                Proyecto Final de Programación Visual - Desarrollo de una SPA en React + Vite para la gestión de productos con uso de estado global, enrutamiento y consumo de API externa.

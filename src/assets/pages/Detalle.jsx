@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { Container, Button, Card } from "react-bootstrap";
 import { useProductos } from "../hooks/useProductos";
 
@@ -42,8 +42,13 @@ function Detalle() {
             <Button variant="primary" onClick={() => navigate("/home")}>
               ← Volver al inicio
             </Button>
-            <Button variant="outline-success">
-              Editar
+            <Button
+              as={Link}
+              to={`/editar/${producto.id}`}
+              variant="outline-success"
+              size="sm"
+            >
+              Modificar
             </Button>
             <span
               onClick={() => marcarFavorito(producto.id)}
