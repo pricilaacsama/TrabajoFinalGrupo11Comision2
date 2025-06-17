@@ -37,14 +37,6 @@ const {productos,borrarProducto,agregarProductos,modificarProductos,marcarFavori
                     <Button variant="outline-danger" size="sm" onClick={()=>borrarProducto(producto.id)}>
                       Eliminar
                     </Button>
-                    <Button
-                      as={Link}
-                      to={`/editar/${producto.id}`}
-                      variant="outline-success"
-                      size="sm"
-                    >
-                      Modificar
-                    </Button>
                     {/* ✅ Botón Detalles con Link */}
                     <Button
                       as={Link}

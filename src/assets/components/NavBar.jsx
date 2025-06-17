@@ -15,7 +15,7 @@ const manejarLogout = () => {
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container>
-        <Navbar.Brand as={Link} to="/home">Programacion Visual</Navbar.Brand>
+        <Navbar.Brand as={Link} to="/home">Click&Go</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
@@ -37,9 +37,16 @@ const manejarLogout = () => {
           </Nav>
 
           {isAuthenticated && (
-            <Button variant="outline-light" onClick={manejarLogout}>
-              Cerrar Sesión
-            </Button>
+            <div className="d-flex align-items-center gap-3">
+              {/*muestra el rol del usuario */}
+              <Navbar.Text className="text-white">
+                Usuario: <strong>{user?.rol}</strong>
+              </Navbar.Text>
+
+              <Button variant="outline-light" onClick={manejarLogout}>
+                Cerrar Sesión
+              </Button>
+            </div>
           )}
         </Navbar.Collapse>
       </Container>
