@@ -1,11 +1,18 @@
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { Container, Button, Card } from "react-bootstrap";
 import { useProductos } from "../hooks/useProductos";
+import {useAuth} from '../hooks/useAuth';
+
 
 function Detalle() {
   const { id } = useParams();
   const navigate = useNavigate();
   const { productos, marcarFavorito } = useProductos();
+  const { user } = useAuth();
+
+  const esAdmin = user?.rol === "ADMINISTRATIVO";
+
+
   //const producto = productos.find((p) => p.id === id);
   const producto = productos.find((p) => String(p.id) === id);
 
@@ -42,6 +49,7 @@ function Detalle() {
             <Button variant="primary" onClick={() => navigate("/home")}>
               ← Volver al inicio
             </Button>
+            {esAdmin && (
             <Button
               as={Link}
               to={`/editar/${producto.id}`}
@@ -50,6 +58,7 @@ function Detalle() {
             >
               Modificar
             </Button>
+            )}
             <span
               onClick={() => marcarFavorito(producto.id)}
               style={{ cursor: "pointer", fontSize: "1.5rem" }}

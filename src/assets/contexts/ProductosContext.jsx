@@ -68,6 +68,12 @@ export function ProductosProvider({ children }) {
     );
   }, []);
 
+  const resetFavoritos = useCallback(() => {
+  setProductos((prevProductos) =>
+    prevProductos.map((p) => ({ ...p, favorito: false }))
+  );
+}, []);
+
   const modificarProducto = useCallback((productoNuevo) => {
     setProductos((prevProductos) =>
       prevProductos.map((p) =>
@@ -83,8 +89,9 @@ export function ProductosProvider({ children }) {
     borrarProducto,
     modificarProducto,
     marcarFavorito,
-    cargando
-  }), [productos, agregarProducto, modificarProducto, borrarProducto, marcarFavorito]);
+    cargando,
+    resetFavoritos
+  }), [productos, agregarProducto, modificarProducto, borrarProducto, marcarFavorito, resetFavoritos]);
 
   return (
     <ProductosContext.Provider value={valorDeContexto}>
