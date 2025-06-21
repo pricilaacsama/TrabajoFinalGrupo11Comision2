@@ -1,14 +1,17 @@
 import { Navbar, Nav, Container, Button } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import {useAuth} from '../hooks/useAuth';
+import { useProductos } from '../hooks/useProductos';
 
 function NavBar() {
 const { login, user, isAuthenticated, logout} = useAuth();
+const {resetFavoritos} = useProductos();
 
 const navigate = useNavigate();
 
 const manejarLogout = () => {
   logout();
+  resetFavoritos();
   navigate("/");
 }
 

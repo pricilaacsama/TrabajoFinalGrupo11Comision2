@@ -1,12 +1,17 @@
 import { Row, Col, Card, Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useProductos } from "../hooks/useProductos"
+import {useAuth} from '../hooks/useAuth'
 
 
 function Favoritos(){
 const {productos,borrarProducto,agregarProductos,modificarProductos,marcarFavorito} = useProductos();
+const {user} = useAuth();
   const productosList = productos.filter((producto) => producto.estado);
   const productosActivos = productosList.filter((p) => p.favorito);
+
+    const esAdmin = user?.rol === "ADMINISTRATIVO";
+
 
   return (
     <Container>
@@ -34,9 +39,11 @@ const {productos,borrarProducto,agregarProductos,modificarProductos,marcarFavori
                     ${producto.precio}
                   </Card.Subtitle>
                   <div className="d-flex flex-wrap gap-2 justify-content-center mt-3">
+                    {esAdmin && (
                     <Button variant="outline-danger" size="sm" onClick={()=>borrarProducto(producto.id)}>
                       Eliminar
                     </Button>
+                    )}
                     {/* ✅ Botón Detalles con Link */}
                     <Button
                       as={Link}
