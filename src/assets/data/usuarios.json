@@ -1,15 +1,15 @@
 [
   {
     "id": "admin20",
-    "username": "admin",
+    "username": "admin@gmail.com",
     "password": "sosala20",
     "rol": "ADMINISTRATIVO",
     "name": "administrador principal"
   },
   {
     "id": "cliente20",
-    "username": "cliente",
-    "password": "hola1",
+    "username": "cliente@gmail.com",
+    "password": "hola10",
     "rol": "CLIENTE",
     "name": "cliente registrado"
   }
