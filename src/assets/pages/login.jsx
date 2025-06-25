@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Form, Button, Card } from "react-bootstrap";
 import {useAuth} from "../hooks/useAuth";
@@ -8,6 +8,10 @@ function Login() {
   const navigate = useNavigate();
   const [credentials, setCredentials] = useState({ username: "", password: "" });
   const [error, setError] = useState("");
+
+  useEffect(()=>{
+    logout();
+  },[])
 
   const handleChange = (e) => {
     setCredentials((prev) => ({

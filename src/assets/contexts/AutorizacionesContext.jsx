@@ -4,16 +4,17 @@ import usersData from "../data/usuarios.json";
 export const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("sessionUser")) || null);
   const [isLoading, setIsLoading] = useState(false);
-  const [isAuthenticated,setIsAuthentificated] = useState (false);
+  const [isAuthenticated,setIsAuthentificated] = useState (!!localStorage.getItem("sessionUser"));
 
   useEffect(()=> {
+    console.log(user)
     if(!(!!localStorage.getItem("users")))
     {
       localStorage.setItem("users",JSON.stringify(usersData))
     }
-  })
+  },[])
 
   const login = useCallback((credentials) => {
     setIsLoading(true);
@@ -43,10 +44,15 @@ export function AuthProvider({ children }) {
   const logout = useCallback(() => {
     setIsAuthentificated(false);
     setUser(null);
+    localStorage.removeItem("sessionUser")
   }, []);
 
   const autenticarToken = useCallback((correcto) => {
     setIsAuthentificated(correcto);
+    if(correcto)
+    {
+      localStorage.setItem("sessionUser",JSON.stringify(user));
+    }
   })
 
   const AuthContextValue = useMemo(() => ({

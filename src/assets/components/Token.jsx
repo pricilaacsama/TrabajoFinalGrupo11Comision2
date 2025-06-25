@@ -9,11 +9,12 @@ export function ValidarToken() {
     const [ingresoToken, setIngresoToken] = useState("");
     const [mensaje, setMensaje] = useState("")   //Mensaje
     const [intentos, setIntentos] = useState(0);
-    const { user, autenticarToken, isAuthenticated } = useAuth();      // Para autenticar usuario si ingresa token correctamente
+    const { user, autenticarToken, isAuthenticated, logout } = useAuth();      // Para autenticar usuario si ingresa token correctamente
     const navigate = useNavigate();
 
     useEffect(() => {
     if (intentos >= 3) {
+      logout();
       setTimeout(() => navigate("/login"), 3000); //lo redirecciona a login despues de 3 intentos
     }
   }, [intentos, navigate]);
