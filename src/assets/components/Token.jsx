@@ -3,6 +3,7 @@ import { generarToken, validoToken } from "../Utilities/usarToken"
 import { useAuth } from "../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 import {Card, Button,Container, Alert} from 'react-bootstrap'
+import "../../App.css"
 
 export function ValidarToken() {
     const [token, setToken] = useState(generarToken);    //Se crea una variable de estado iniciado con operacion Genera el token
@@ -45,32 +46,22 @@ export function ValidarToken() {
         }
     }
     return (
-        <Container className="d-flex justify-content-center align-items-center min-vh-100 bg-light position-relative">
-      {/* Notificación tipo correo del token */}
-      <div style={{
-        position: 'absolute',
-        top: '20px',
-        right: '20px',
-        backgroundColor: '#f8f9fa',
-        padding: '1rem 1.5rem',
-        borderRadius: '10px',
-        boxShadow: '0 0 10px rgba(0,0,0,0.1)',
-        maxWidth: '250px',
-        borderLeft: '5px solid #0d6efd'
-      }}>
+        <Container className="form-container">
+      {/* Notificación tipo "email enviado" */}
+      <div className="token-mensaje-flotante">
         <strong className="text-primary">📩 Código enviado:</strong>
-        <div className="mt-2 text-muted fs-5 fw-bold">{token[0]}</div>
+        <div className="token-codigo">{token[0]}</div>
       </div>
 
-      <Card className="shadow p-4 border-0 w-100" style={{ maxWidth: "400px" }}>
+      <Card className="form-card">
         <Card.Body>
-          <h4 className="mb-4 text-center">Validar Código de Seguridad</h4>
+          <h4 className="token-titulo">Validar Código de Seguridad</h4>
 
           <div className="mb-3">
             <label htmlFor="tokenInput" className="form-label">Ingrese el token recibido</label>
             <input
               type="number"
-              className="form-control rounded-3 shadow-sm"
+              className="form-control token-input"
               placeholder="Ej: 123456"
               value={ingresoToken}
               onChange={(e) => setIngresoToken(e.target.value)}
@@ -80,8 +71,8 @@ export function ValidarToken() {
 
           <Button
             variant="primary"
-            className="w-100 rounded-3"
-            onClick={() => validarToken()}
+            className="token-boton"
+            onClick={validarToken}
             disabled={intentos >= 3}
           >
             Validar

@@ -1,4 +1,5 @@
 import { Container, Carousel } from 'react-bootstrap';
+import "../../App.css"
 
 import img1 from '../../img/img1.jpg';
 import img2 from '../../img/img2.jpg';
@@ -25,35 +26,25 @@ const integrantes = [
 function Acerca() {
   return (
     <>
-      <Container className="py-5">
-      <h2 className="text-center fw-bold mb-3">CONOCE AL GRUPO 11 👥</h2>
-      <p className="text-center text-muted mb-4 fs-5">
-        Este proyecto fue realizado por estudiantes de Programación Visual.<br></br>
+      <Container className="acerca-container">
+      <h2 className="acerca-titulo">👥 CONOCÉ AL GRUPO 11</h2>
+      <p className="acerca-descripcion">
+        Este proyecto fue realizado por estudiantes de Programación Visual.<br />
         Trabajamos de manera colaborativa, asignando roles claros, compartiendo ideas y resolviendo desafíos juntos para lograr una experiencia de aprendizaje significativa.
-
       </p>
 
-
-      <Carousel data-bs-theme="dark" className="custom-carousel mx-auto" interval={2500}>
+      <Carousel data-bs-theme="dark" className="acerca-carousel" interval={3000} fade>
         {integrantes.map((persona, index) => (
           <Carousel.Item key={index}>
-            <div className="carousel-card mx-auto p-4">
+            <div className="acerca-slide">
               <img
                 src={persona.foto}
                 alt={persona.nombre}
-                className="shadow"
-                style={{
-                  width: '600px',
-                  height: '450px',
-                  objectFit: 'cover',
-                  border: '3px solid',
-                  margin: '0 auto 1rem auto',
-                  display: 'block',
-                }}
+                className="acerca-img shadow"
               />
-              <Carousel.Caption className="carousel-caption-custom">
-              <h3>{persona.nombre}</h3>
-              <p>{persona.descripcion}</p>
+              <Carousel.Caption className="acerca-caption text-light">
+                <h3>{persona.nombre}</h3>
+                <p>{persona.descripcion}</p>
               </Carousel.Caption>
             </div>
           </Carousel.Item>

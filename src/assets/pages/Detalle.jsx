@@ -2,6 +2,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import { Container, Button, Card } from "react-bootstrap";
 import { useProductos } from "../hooks/useProductos";
 import {useAuth} from '../hooks/useAuth';
+import "../../App.css"
 
 
 function Detalle() {
@@ -29,48 +30,52 @@ function Detalle() {
   }
 
   return (
-    <Container className="py-5 d-flex justify-content-center">
-      <Card className="p-4 shadow" style={{ maxWidth: "600px", width: "100%" }}>
-        <Card.Img
-          variant="top"
-          src={producto.imagen}
-          alt={producto.nombre}
-          style={{ height: "300px", objectFit: "cover" }}
-        />
-        <Card.Body>
-          <Card.Title className="fs-3 fw-bold">{producto.nombre}</Card.Title>
-          <Card.Subtitle className="text-muted mb-3">
-            ${producto.precio}
-          </Card.Subtitle>
-          <Card.Text>{producto.descripcion}</Card.Text>
-          <p className="text-muted">Categoría: {producto.categoria}</p>
+    <Container className="detalle-container">
+  <Card className="detalle-card">
+    <Card.Img
+      variant="top"
+      src={producto.imagen}
+      alt={producto.nombre}
+      className="detalle-img"
+    />
+    <Card.Body>
+      <Card.Title className="detalle-titulo">{producto.nombre}</Card.Title>
+      <Card.Subtitle className="detalle-precio">
+        ${producto.precio}
+      </Card.Subtitle>
+      <Card.Text className="detalle-descripcion">
+        {producto.descripcion}
+      </Card.Text>
+      <p className="detalle-categoria">
+        Categoría: <span>{producto.categoria}</span>
+      </p>
 
-          <div className="d-flex flex-wrap gap-2 justify-content-center mt-4">
-            <Button variant="primary" onClick={() => navigate("/home")}>
-              ← Volver al inicio
-            </Button>
-            {esAdmin && (
-            <Button
-              as={Link}
-              to={`/editar/${producto.id}`}
-              variant="outline-success"
-              size="sm"
-            >
-              Modificar
-            </Button>
-            )}
-            <span
-              onClick={() => marcarFavorito(producto.id)}
-              style={{ cursor: "pointer", fontSize: "1.5rem" }}
-              title="Marcar como favorito"
-            >
-              {producto.favorito ? "❤️" : "🤍"}
-            </span>
-
-          </div>
-        </Card.Body>
-      </Card>
-    </Container>
+      <div className="detalle-botones">
+        <Button variant="primary" onClick={() => navigate("/home")}>
+          ← Volver al inicio
+        </Button>
+        {esAdmin && (
+          <Button
+            as={Link}
+            to={`/editar/${producto.id}`}
+            variant="outline-success"
+            size="sm"
+            className="btn-accion"
+          >
+            Modificar
+          </Button>
+        )}
+        <span
+          onClick={() => marcarFavorito(producto.id)}
+          className="favorito-icon"
+          title="Marcar como favorito"
+        >
+          {producto.favorito ? "❤️" : "🤍"}
+        </span>
+      </div>
+    </Card.Body>
+  </Card>
+</Container>
   );
 }
 
