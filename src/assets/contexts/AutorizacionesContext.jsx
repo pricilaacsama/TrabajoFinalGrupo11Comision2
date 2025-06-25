@@ -1,4 +1,4 @@
-import { createContext, useState, useMemo, useCallback } from "react";
+import { createContext, useState, useMemo, useCallback, useEffect } from "react";
 import usersData from "../data/usuarios.json";
 
 export const AuthContext = createContext(null);
@@ -8,15 +8,21 @@ export function AuthProvider({ children }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isAuthenticated,setIsAuthentificated] = useState (false);
 
+  useEffect(()=> {
+    if(!(!!localStorage.getItem("users")))
+    {
+      localStorage.setItem("users",JSON.stringify(usersData))
+    }
+  })
+
   const login = useCallback((credentials) => {
     setIsLoading(true);
     try {
-      const usuarioEncontrado = usersData.find(
+      const usuarioEncontrado = JSON.parse(localStorage.getItem("users")) .find(
         (u) =>
           u.username === credentials.username &&
           u.password === credentials.password
       );
-
       if (usuarioEncontrado) {
         const { password, ...userWithoutPassword } = usuarioEncontrado;
         setUser(userWithoutPassword);
