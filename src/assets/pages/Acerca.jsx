@@ -8,25 +8,24 @@ import img3 from '../../img/img3.jpg';
 const integrantes = [
   {
     nombre: 'Juan Eduardo Lamas',
-    descripcion: 'Líder del grupo.',
+    github: 'https://github.com/juanjujuy',
     foto: img3,
   },
   {
     nombre: 'Pricila Acsama',
-    descripcion: 'Organizador de Proyectos.',
+    github: 'https://github.com/pricilaacsama',
     foto: img1,
   },
   {
     nombre: 'Delia Maribel Cusipuma',
-    descripcion: 'Control y Dar formato a Proyectos.',
+    github: 'https://github.com/Delia150',
     foto: img2,
   },
 ];
 
 function Acerca() {
   return (
-    <>
-      <Container className="acerca-container">
+    <Container className="acerca-container">
       <h2 className="acerca-titulo">👥 CONOCÉ AL GRUPO 11</h2>
       <p className="acerca-descripcion">
         Este proyecto fue realizado por estudiantes de Programación Visual.<br />
@@ -44,14 +43,17 @@ function Acerca() {
               />
               <Carousel.Caption className="acerca-caption text-light">
                 <h3>{persona.nombre}</h3>
-                <p>{persona.descripcion}</p>
+                <p>
+                  <a href={persona.github} target="_blank" rel="noopener noreferrer" style={{ color: 'lightblue' }}>
+                    Repositorio GitHub
+                  </a>
+                </p>
               </Carousel.Caption>
             </div>
           </Carousel.Item>
         ))}
       </Carousel>
     </Container>
-    </>
   );
 }
 
