@@ -9,7 +9,7 @@ function Error() {
       <p className="text-muted mb-4">
         Lo sentimos, la pagina que estas buscando no existe o esta mal escrito.
       </p>
-      <Button as={Link} to="/" variant="primary">
+      <Button as={Link} to="/home" variant="primary">
         Volver al inicio
       </Button>
     </Container>

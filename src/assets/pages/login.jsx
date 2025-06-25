@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Form, Button, Card } from "react-bootstrap";
 import { useAuth } from "../hooks/useAuth";
+import "../../App.css"; // Asegurate de importarlo
+
 
 function Login() {
   const { login, isLoading, user, isAuthenticated, logout } = useAuth();
@@ -45,9 +47,9 @@ function Login() {
   };
 
   return (
-    <Container className="py-5 d-flex justify-content-center">
-      <Card className="p-4 shadow" style={{ maxWidth: "400px", width: "100%" }}>
-        <h2 className="text-center mb-4">Iniciar Sesión</h2>
+    <Container className="py-5 d-flex justify-content-center form-container">
+      <Card className="form-card">
+        <h2 className="form-title">Iniciar Sesión</h2>
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
             <Form.Label>Usuario</Form.Label>
@@ -85,7 +87,7 @@ function Login() {
           {error && <p className="text-danger">{error}</p>}
 
           <div className="text-center">
-            <Button type="submit" variant="primary" disabled={isLoading}>
+            <Button type="submit" variant="primary" className="form-button" disabled={isLoading}>
               {isLoading ? "Cargando..." : "Ingresar"}
             </Button>
           </div>

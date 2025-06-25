@@ -77,9 +77,9 @@ function Formulario() {
 
 
   return (
-    <Container className="my-5">
-      <Card className="shadow-lg border-0 rounded-4 p-4 mx-auto" style={{ maxWidth: "720px" }}>
-        <h2 className="text-center mb-4 text-primary fw-bold">
+    <Container className="my-5 form-container">
+      <Card className="form-card" style={{ maxWidth: "720px" }}>
+        <h2 className="form-title">
           {productoExistente ? "Editar Producto" : "Agregar Nuevo Producto"}
         </h2>
 
@@ -183,11 +183,11 @@ function Formulario() {
             </Form.Control.Feedback>
           </Form.Group>
 
-          <div className="text-center">
+          <div className="d-flex gap-3 justify-content-center mt-3">
             <Button
               variant="primary"
               type="submit"
-              className="px-5 py-2 fs-5 rounded-pill shadow-sm"
+              className="rounded-pill form-button"
             >
               {productoExistente ? "Guardar Cambios" : "Agregar Producto"}
             </Button>

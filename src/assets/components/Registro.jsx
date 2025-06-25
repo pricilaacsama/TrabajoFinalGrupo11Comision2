@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Form, Button, Card, Container, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-//import "../App.css";
+import "../../App.css";
 
 
 function Registro() {
@@ -67,9 +67,9 @@ function Registro() {
     };
 
     return (
-        <Container className="my-5">
-            <Card className="shadow border-0 rounded-4 p-4 mx-auto" style={{ maxWidth: "600px" }}>
-                <h2 className="text-center mb-4 text-primary">Registro de Usuario</h2>
+        <Container className="form-container">
+            <Card className="form-card" style={{ maxWidth: "600px" }}>
+                <h2 className="form-title">Registro de Usuario</h2>
 
                 <Form noValidate validated={validated} onSubmit={handleSubmit}>
                     <Form.Group controlId="formNombre" className="mb-3">
@@ -149,7 +149,7 @@ function Registro() {
                         <Button
                             type="submit"
                             variant="primary"
-                            className="px-5 py-2 rounded-pill shadow-sm"
+                            className="px-5 py-2 rounded-pill shadow-sm form-button"
                         >
                             Registrarme
                         </Button>

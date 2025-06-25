@@ -2,6 +2,7 @@ import { Row, Col, Card, Button, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { useProductos } from "../hooks/useProductos"
 import {useAuth} from '../hooks/useAuth'
+import "../../App.css"
 
 
 function Favoritos(){
@@ -14,8 +15,8 @@ const {user} = useAuth();
 
 
   return (
-    <Container>
-      <h2 className="text-center mb-4 display-7 fw-bold text-dark">
+    <Container className="productos-container">
+      <h2 className="productos-titulo">
         🛒 Lista de Favoritos
       </h2>
       {productosActivos.length === 0 ? (
@@ -24,7 +25,7 @@ const {user} = useAuth();
         <Row>
           {productosActivos.map((producto) => (
             <Col key={producto.id} md={6} lg={4} className="mb-4">
-              <Card className="shadow-sm border-0 card-hover h-100">
+              <Card className="producto-card">
                 <Card.Img
                   variant="top"
                   src={producto.imagen}
@@ -57,6 +58,7 @@ const {user} = useAuth();
                       onClick={() => marcarFavorito(producto.id)}
                       style={{ cursor: "pointer", fontSize: "1.5rem" }}
                       title="Marcar como favorito"
+                      className="favorito-icon"
                     >
                       {producto.favorito ? "❤️" : "🤍"}
                     </span>
