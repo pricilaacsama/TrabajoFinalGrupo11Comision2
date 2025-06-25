@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Form, Button, Card } from "react-bootstrap";
-import {useAuth} from "../hooks/useAuth";
+import { useAuth } from "../hooks/useAuth";
 
 function Login() {
-  const { login, isLoading, user, isAuthenticated,logout} = useAuth();
+  const { login, isLoading, user, isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
+
+  const [validated, setValidated] = useState(false);
   const [credentials, setCredentials] = useState({ username: "", password: "" });
+
   const [error, setError] = useState("");
 
-  useEffect(()=>{
+  useEffect(() => {
     logout();
-  },[])
+  }, [])
 
   const handleChange = (e) => {
     setCredentials((prev) => ({
@@ -21,12 +24,23 @@ function Login() {
   };
 
   const handleSubmit = async (e) => {
+    const form = e.currentTarget;
+
     e.preventDefault();
+
+    if (form.checkValidity() === false) {
+      e.stopPropagation();
+      setValidated(true);
+      return;
+    }
+
+
     const result = await login(credentials);
     if (result.success) {
       navigate("/token");
     } else {
       setError(result.message || "Error de autenticación");
+      setValidated(true);
     }
   };
 
@@ -34,17 +48,21 @@ function Login() {
     <Container className="py-5 d-flex justify-content-center">
       <Card className="p-4 shadow" style={{ maxWidth: "400px", width: "100%" }}>
         <h2 className="text-center mb-4">Iniciar Sesión</h2>
-        <Form onSubmit={handleSubmit}>
+        <Form noValidate validated={validated} onSubmit={handleSubmit}>
           <Form.Group className="mb-3">
             <Form.Label>Usuario</Form.Label>
             <Form.Control
-              type="text"
+              type="email"
               name="username"
               value={credentials.username}
               onChange={handleChange}
               required
               placeholder="Ingrese su usuario"
+              isInvalid={validated && !credentials.username}
             />
+            <Form.Control.Feedback type="invalid">
+              Ingresá un correo válido.
+            </Form.Control.Feedback>
           </Form.Group>
 
           <Form.Group className="mb-3">
@@ -56,7 +74,12 @@ function Login() {
               onChange={handleChange}
               required
               placeholder="Ingrese su contraseña"
+              minLength={6}
+              isInvalid={validated && credentials.password.length < 6}
             />
+            <Form.Control.Feedback type="invalid">
+              La contraseña debe tener al menos 6 caracteres.
+            </Form.Control.Feedback>
           </Form.Group>
 
           {error && <p className="text-danger">{error}</p>}

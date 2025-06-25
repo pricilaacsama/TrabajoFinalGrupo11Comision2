@@ -35,12 +35,17 @@ const manejarLogout = () => {
             )}
 
             {!isAuthenticated && (
+              <>
               <Nav.Link as={Link} to="/login">Iniciar Sesión</Nav.Link>
+              <Nav.Link as={Link} to="/registrar">Registrarse</Nav.Link>
+              </>
             )}
           </Nav>
 
           {isAuthenticated && (
             <div className="d-flex align-items-center gap-3">
+              {/*mensaje de bienvenida cuando se logea*/}
+                <Navbar.Text className="text-white">Bienvenido, {user?.username}</Navbar.Text>
               {/*muestra el rol del usuario */}
               <Navbar.Text className="text-white">
                 Usuario: <strong>{user?.rol}</strong>
