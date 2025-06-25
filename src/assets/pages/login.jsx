@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Form, Button, Card } from "react-bootstrap";
 import { useAuth } from "../hooks/useAuth";
 import "../../App.css"; // Asegurate de importarlo
+
 
 
 function Login() {
@@ -91,6 +93,13 @@ function Login() {
               {isLoading ? "Cargando..." : "Ingresar"}
             </Button>
           </div>
+
+         <p style={{ marginTop: "1rem" }}>
+          ¿Olvidaste tu contraseña? <Link to="/recuperar">Recupérala aquí</Link>
+         </p>
+
+
+
         </Form>
       </Card>
     </Container>

@@ -12,7 +12,7 @@ import ProtectedRoute from './assets/components/ProtectedRoute';
 import Footer from './assets/components/Footer';
 import {ValidarToken} from './assets/components/Token'
 import Registro from './assets/components/Registro';
-
+import Recuperar from './assets/pages/Recuperar'; 
 function App() {
 
   return (
@@ -25,6 +25,10 @@ function App() {
 
         {/* Página de login */}
         <Route path="/login" element={<Login />} />
+
+        {/* Página de recuperación */}
+        <Route path="/recuperar" element={<Recuperar />} />
+
 
         {/* Pagina de token */}
         <Route path="/token" element={<ValidarToken />} />
